@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const About = () => {
     return (
         <motion.section
-            className="w-full text-purple"
+            className="w-full "
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -17,12 +17,12 @@ const About = () => {
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                    Sistema de Blockchain para alcançar seus objetivos e doações
+                    Vinculação de Dados de Crédito
                 </motion.h2>
             </div>
             <div className="w-full mx-auto px-20 max-w-screen-2xl grid grid-cols-1 md:grid-cols-2">
                 <motion.div
-                    className="md:border-0 md:odd:border-r md:border-solid md:border-purple overflow-hidden"
+                    className="md:border-0 md:odd:border-r md:border-solid  overflow-hidden"
                     initial={{ x: -50, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.5 }}
@@ -35,7 +35,7 @@ const About = () => {
                                 whileInView={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.6, duration: 0.5 }}
                             >
-                                1. O que é GoalGame?
+                                1. Fonte de dados de crédito
                             </motion.h1>
                             <motion.p
                                 className="mt-4 font-bold"
@@ -43,21 +43,16 @@ const About = () => {
                                 whileInView={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.8, duration: 0.5 }}
                             >
-                                É um jogo emocionante baseado em blockchain que combina
-                                as metas pessoais, incentivos financeiros e impacto social.
-                                Nesta plataforma inovadora, os usuários são convidados
-                                a depositar dinheiro e se desafiar a atingir
-                                seus objetivos dentro de um prazo determinado. 
-                                O jogo aproveita o poder da tecnologia blockchain para garantir
-                                transparência, segurança e justiça em todas as transações.
-
+                                Os dados de crédito são obtidos a partir de fontes confiáveis, como bancos e agências de
+                                crédito. A integridade dos dados é verificada antes da vinculação com o Soul Bound
+                                Token.
                             </motion.p>
                         </div>
-                        <div className="w-full border-b border-solid border-purple h-20 border-0 md:border-b"></div>
+                        <div className="w-full border-b border-solid  h-20 border-0 md:border-b"></div>
                     </div>
                 </motion.div>
                 <motion.div
-                    className="md:border-0 md:odd:border-r md:border-solid md:border-purple overflow-hidden"
+                    className="md:border-0 md:odd:border-r md:border-solid  overflow-hidden"
                     initial={{ x: 50, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.5 }}
@@ -70,8 +65,7 @@ const About = () => {
                                 whileInView={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.6, duration: 0.5 }}
                             >
-                                2. Campanhas de caridade e impacto social
-
+                                2. Processo de Vinculação
                             </motion.h1>
                             <motion.p
                                 className="mt-4 font-bold"
@@ -79,14 +73,16 @@ const About = () => {
                                 whileInView={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.8, duration: 0.5 }}
                             >
-                                Caso o jogador não consiga atingir seus objetivos, o dinheiro depositado será direcionado para campanhas beneficentes geradas no site GoalGame, também na blockchain. Essas campanhas serão criteriosamente selecionadas, com foco em causas sociais relevantes e impactantes. Dessa forma, o dinheiro que não foi resgatado pelos jogadores será convertido em recursos valiosos para ajudar quem precisa.
+                                Um processo seguro de vinculação é estabelecido, envolvendo a verificação de identidade
+                                e autenticação. Os dados de crédito são criptografados e vinculados ao token de forma
+                                permanente.
                             </motion.p>
                         </div>
-                        <div className="w-full border-b border-solid border-purple h-20 border-0 md:border-b"></div>
+                        <div className="w-full border-b border-solid  h-20 border-0 md:border-b"></div>
                     </div>
                 </motion.div>
                 <motion.div
-                    className="md:border-0 md:odd:border-r md:border-solid md:border-purple overflow-hidden"
+                    className="md:border-0 md:odd:border-r md:border-solid overflow-hidden"
                     initial={{ x: -50, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.5 }}
@@ -99,7 +95,7 @@ const About = () => {
                                 whileInView={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.6, duration: 0.5 }}
                             >
-                                3. Recompensas financeiras para o seu sucesso
+                                3. Privacidade e Controle do Titular
                             </motion.h1>
                             <motion.p
                                 className="mt-4 font-bold"
@@ -107,15 +103,16 @@ const About = () => {
                                 whileInView={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.8, duration: 0.5 }}
                             >
-                                Por outro lado, se o jogador atingir seus objetivos com sucesso dentro do prazo estabelecido, terá direito a receber uma parte do dinheiro depositado pelos jogadores que não conseguiram cumprir seus objetivos. Esta recompensa financeira serve como um incentivo adicional para motivar e encorajar os jogadores a darem o seu melhor para atingirem os seus objetivos. A distribuição dos ganhos será justa e transparente, levando em consideração o desempenho individual de cada jogador.
-
+                                Os titulares dos dados têm o controle total sobre quem pode acessar seus dados de
+                                crédito vinculados ao token. Isso protege a privacidade e a segurança dos indivíduos,
+                                permitindo-lhes compartilhar seus dados seletivamente.
                             </motion.p>
                         </div>
-                        <div className="w-full border-0 border-solid border-purple h-20 border-b md:border-0"></div>
+                        <div className="w-full border-0 border-solid  h-20 border-b md:border-0"></div>
                     </div>
                 </motion.div>
                 <motion.div
-                    className="md:border-0 md:odd:border-r md:border-solid md:border-purple overflow-hidden"
+                    className="md:border-0 md:odd:border-r md:border-solid overflow-hidden"
                     initial={{ x: 50, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.5 }}
@@ -128,7 +125,7 @@ const About = () => {
                                 whileInView={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.6, duration: 0.5 }}
                             >
-                                4. Amei o Projeto, mas ao final BlockChain é confiável?
+                                4. Segurança e Imutabilidade
                             </motion.h1>
                             <motion.p
                                 className="mt-4 font-bold"
@@ -136,10 +133,12 @@ const About = () => {
                                 whileInView={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.8, duration: 0.5 }}
                             >
-                                Blockchain é uma tecnologia que agrupa um conjunto de informações imutável que se conectam por meio de criptografia garantindo total segurança e a transparência. 
+                                A blockchain garante que os dados de crédito vinculados sejam imutáveis e à prova de
+                                adulteração. Isso cria uma base sólida para transações de crédito seguras e
+                                transparentes.
                             </motion.p>
                         </div>
-                        <div className="w-full border-0 border-solid border-purple h-20 border-b md:border-0"></div>
+                        <div className="w-full border-0 border-solid h-20 border-b md:border-0"></div>
                     </div>
                 </motion.div>
             </div>

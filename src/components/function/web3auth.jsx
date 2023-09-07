@@ -175,7 +175,7 @@ const Auth = () => {
                 onClick={() => handleDropClick('drop1')}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="py-1 px-1 relative  rounded-xl md:rounded-full bg-cblue flex flex-col "
+                className="py-1 px-1 relative  rounded-xl md:rounded-full bg-primary flex flex-col "
             >
                 {/* <div className="bg-[url(../../public/profile.svg)] bg-contain bg-no-repeat bg-center h-10 w-14"></div> */}
                 <img src={picture} alt="profilePicture" className="h-10 w-auto rounded-xl md:rounded-full"></img>
@@ -206,9 +206,9 @@ const Auth = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 id="walletButtonn"
-                className="bg-cblue hover:bg-gold font-bold py-2 px-4 rounded-lg"
+                className="bg-primary hover:bg-dprimary font-bold py-2 px-4 rounded-lg"
             >
-                Web3Auth
+                Conectar
             </motion.button>
         </div>
     );

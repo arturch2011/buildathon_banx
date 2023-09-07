@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
 const Join = () => {
     return (
@@ -12,7 +12,7 @@ const Join = () => {
         >
             <div className="w-full mx-auto my-5 px-20 max-w-screen-2xl">
                 <motion.div
-                    className="flex flex-col items-center justify-center md:flex-row w-full h-[40rem] my-5 p-20 rounded-xl md:rounded-[32px] max-w-screen-2xl bg-gradient-to-r from-dgold to-cgold"
+                    className="flex flex-col items-center justify-center md:flex-row w-full h-[40rem] my-5 p-20 rounded-xl md:rounded-[32px] max-w-screen-2xl bg-gradient-to-r from-dprimary to-cprimary"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
@@ -24,7 +24,7 @@ const Join = () => {
                         transition={{ delay: 0.4, duration: 0.5 }}
                     >
                         <p className="tw-lead text-5xl md:text-6xl md:tw-title-sm mb-10 text-center font-bold">
-                        Faça parte da comunidade e receba recompensas.
+                            Faça parte da comunidade e receba recompensas.
                         </p>
                         <motion.button
                             className="w-2/3 h-14 mt-4 py-1 px-3 font-bold bg-gray-800/50 rounded-lg hover:bg-gray-800 active:bg-gray-800/50"
@@ -44,7 +44,7 @@ const Join = () => {
                 </motion.div>
             </div>
         </motion.section>
-    )
-}
+    );
+};
 
-export default Join
+export default Join;

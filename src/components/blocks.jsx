@@ -26,7 +26,7 @@ const Blocks = () => {
     };
 
     return (
-        <section className="bg-gray-100 py-20">
+        <section className="bg-cbase py-20">
             <div className="container mx-auto px-4">
                 <motion.div
                     variants={containerVariants}
@@ -35,20 +35,36 @@ const Blocks = () => {
                     className="flex flex-col items-center"
                 >
                     <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold mb-8 text-center">
-                        Nossos Objetivos
+                        Visão Geral
                     </motion.h2>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        <motion.div variants={itemVariants} className="shadow-md">
-                            <Image src={quadv} alt="logo" className="w-auto rounded-xl" />
+                        <motion.div variants={itemVariants} className="bg-gray-500 p-8 rounded-lg shadow-md">
+                            <h3 className="text-xl font-bold mb-4">Compreendendo o Serviço</h3>
+                            <p>
+                                O nosso serviço utiliza tecnologia blockchain para transformar a maneira como as
+                                transações de crédito são gerenciadas e acessadas.
+                            </p>
                         </motion.div>
-                        <motion.div variants={itemVariants} className="shadow-md">
-                            <Image src={quadv2} alt="logo" className="w-auto rounded-xl" />
+                        <motion.div variants={itemVariants} className="bg-gray-500 p-8 rounded-lg shadow-md">
+                            <h3 className="text-xl font-bold mb-4">Simplificando o Acesso ao Crédito</h3>
+                            <p>
+                                Nós simplificamos o processo de obtenção de crédito, tornando-o mais acessível e
+                                eficiente para os indivíduos.
+                            </p>
                         </motion.div>
-                        <motion.div variants={itemVariants} className="shadow-md">
-                            <Image src={quadl} alt="logo" className="w-auto rounded-xl" />
+                        <motion.div variants={itemVariants} className="bg-gray-500 p-8 rounded-lg shadow-md">
+                            <h3 className="text-xl font-bold mb-4"> Protegendo a Privacidade e a Segurança</h3>
+                            <p>
+                                Valorizamos a privacidade e a segurança dos dados dos nossos usuários, utilizando a
+                                tecnologia Soul Bound Token para proteger os dados de crédito.
+                            </p>
                         </motion.div>
-                        <motion.div variants={itemVariants} className="shadow-md">
-                            <Image src={quada} alt="logo" className="w-auto rounded-xl" />
+                        <motion.div variants={itemVariants} className="bg-gray-500 p-8 rounded-lg shadow-md">
+                            <h3 className="text-xl font-bold mb-4">Transformando a Indústria Financeira</h3>
+                            <p>
+                                O nosso serviço tem o potencial de revolucionar a indústria financeira, tornando-a mais
+                                inclusiva, segura e transparente.
+                            </p>
                         </motion.div>
                     </div>
                 </motion.div>

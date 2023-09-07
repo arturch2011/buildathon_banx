@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, spring, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
+import autoprefixer from 'autoprefixer';
 
 const Expandable = () => {
     const [showContent, setShowContent] = useState({
@@ -34,16 +35,14 @@ const Expandable = () => {
     };
 
     return (
-        <section className="w-full mb-60 text-purple">
+        <section className="w-full mb-60 ">
             <div className="w-full mx-auto text-center max-w-screen-2xl my-16 md:pt-20">
-                <h2 className="text-6xl font-bold">
-                    Aumentando a Generosidade: Transformando as Doações em um Jogo com NFTs Especiais e Benefícios
-                </h2>
+                <h2 className="text-6xl font-bold">Obtenção de Crédito com Base no Score</h2>
             </div>
 
             {/* Div 1 */}
             <div className="w-full mx-auto my-5 px-20 max-w-screen-2xl">
-                <div className="bg-dgold rounded-xl md:rounded-[32px] px-6 md:px-10 py-6 md:py-12">
+                <div className="bg-primary rounded-xl md:rounded-[32px] px-6 md:px-10 py-6 md:py-12">
                     <motion.button
                         onClick={() => handleDivClick('div1')}
                         className="w-full flex justify-between items-center bg-transparent appearance-none border-none p-0"
@@ -51,7 +50,7 @@ const Expandable = () => {
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.5 }}
                     >
-                        <h3 className="text-4xl font-bold mb-0">NFTs Exclusivos: Recompensas para Generosidade</h3>
+                        <h3 className="text-4xl font-bold mb-0">Avaliação de Crédito Automatizada</h3>
                         <motion.svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="36"
@@ -81,17 +80,12 @@ const Expandable = () => {
                         >
                             <div className="flex flex-col md:flex-row">
                                 <div className="flex-1 pt-5 md:pt-20 order-2 md:order-1 flex flex-col justify-center">
-                                    <p className="tw-lead text-2xl md:tw-title-sm mb-10 text-camber font-bold">
-                                        GOal Game introduz um aspecto envolvente de gamificação na experiência de doação
-                                        ao integrar tokens não fungíveis (NFTs) especiais. Quando os usuários contribuem
-                                        para campanhas, eles ganham NFTs exclusivos e de edição limitada como símbolos
-                                        de apreço.
+                                    <p className="tw-lead text-2xl md:tw-title-sm mb-10 text-camber font-bold text-white/75">
+                                        A blockchain permite a criação de contratos inteligentes que avaliam
+                                        automaticamente o score de crédito vinculado antes de conceder crédito.
                                     </p>
-                                    <p className="tw-lead text-xl font-bold md:tw-title-sm mb-10">
-                                        Esses NFTs representam sua generosidade e servem como testemunho de seu apoio a
-                                        causas significativas. Ao desbloquear NFTs exclusivos, os doadores não apenas
-                                        contribuem para uma mudança positiva, mas também obtêm colecionáveis digitais
-                                        com valor intrínseco.
+                                    <p className="tw-lead text-xl font-bold md:tw-title-sm mb-10 text-white/50">
+                                        Isso agiliza o processo de tomada de decisão de crédito.
                                     </p>
                                 </div>
                                 <div className="flex-1 order-1 md:order-2 mt-10 md:mt-0 aspect-[821/750]">
@@ -105,7 +99,7 @@ const Expandable = () => {
 
             {/* Div 2 */}
             <div className="w-full mx-auto my-5 px-20 max-w-screen-2xl">
-                <div className="bg-dgold rounded-xl md:rounded-[32px] px-6 md:px-10 py-6 md:py-12">
+                <div className="bg-primary rounded-xl md:rounded-[32px] px-6 md:px-10 py-6 md:py-12">
                     <motion.button
                         onClick={() => handleDivClick('div2')}
                         className="w-full flex justify-between items-center bg-transparent appearance-none border-none p-0"
@@ -113,9 +107,7 @@ const Expandable = () => {
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.4, duration: 0.5 }}
                     >
-                        <h3 className="text-4xl font-bold mb-0">
-                            Benefícios dos NFTs: Desbloqueando Privilégios Únicos
-                        </h3>
+                        <h3 className="text-4xl font-bold mb-0">Transações de Crédito Descentralizadas</h3>
                         <motion.svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="36"
@@ -145,16 +137,13 @@ const Expandable = () => {
                         >
                             <div className="flex flex-col md:flex-row">
                                 <div className="flex-1 pt-5 md:pt-20 order-2 md:order-1 flex flex-col justify-center">
-                                    <p className="tw-lead text-2xl md:tw-title-sm mb-10 text-camber font-bold">
-                                        Os NFTs do GOal Game vão além de serem meros itens de colecionador - eles
-                                        oferecem benefícios tangíveis aos seus detentores. Esses NFTs especiais concedem
-                                        acesso a eventos exclusivos, prévias antecipadas de campanhas ou até mesmo
-                                        descontos em produtos e serviços de parceiros.
+                                    <p className="tw-lead text-2xl md:tw-title-sm mb-10 text-camber font-bold text-white/75">
+                                        A descentralização elimina intermediários, reduzindo custos e agilizando a
+                                        aprovação de crédito.
                                     </p>
-                                    <p className="tw-lead text-xl font-bold md:tw-title-sm mb-10">
-                                        Ao possuir esses NFTs, os doadores se tornam parte de uma comunidade exclusiva
-                                        que desfruta de privilégios e experiências únicas, adicionando uma camada extra
-                                        de emoção e incentivos ao ato de doar.
+                                    <p className="tw-lead text-xl font-bold md:tw-title-sm mb-10 text-white/50">
+                                        Os empréstimos e transações de crédito ocorrem diretamente entre as partes, de
+                                        forma transparente.
                                     </p>
                                 </div>
                                 <div className="flex-1 order-1 md:order-2 mt-10 md:mt-0 aspect-[821/750]">
@@ -168,7 +157,7 @@ const Expandable = () => {
 
             {/* Div 3 */}
             <div className="w-full mx-auto my-5 px-20 max-w-screen-2xl">
-                <div className="bg-dgold rounded-xl md:rounded-[32px] px-6 md:px-10 py-6 md:py-12">
+                <div className="bg-primary rounded-xl md:rounded-[32px] px-6 md:px-10 py-6 md:py-12">
                     <motion.button
                         onClick={() => handleDivClick('div3')}
                         className="w-full flex justify-between items-center bg-transparent appearance-none border-none p-0"
@@ -176,7 +165,7 @@ const Expandable = () => {
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.6, duration: 0.5 }}
                     >
-                        <h3 className="text-4xl font-bold mb-0">Exibição de Impacto: Perfis Personalizados de NFT</h3>
+                        <h3 className="text-4xl font-bold mb-0">Flexibilidade nas Condições de Empréstimo</h3>
                         <motion.svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="36"
@@ -206,16 +195,13 @@ const Expandable = () => {
                         >
                             <div className="flex flex-col md:flex-row">
                                 <div className="flex-1 pt-5 md:pt-20 order-2 md:order-1 flex flex-col justify-center">
-                                    <p className="tw-lead text-2xl md:tw-title-sm mb-10 text-camber font-bold">
-                                        O GOal Game utiliza a tecnologia de NFT para criar perfis personalizados para os
-                                        doadores. Cada perfil mostra o impacto que um indivíduo ou organização teve por
-                                        meio de suas doações.
+                                    <p className="tw-lead text-2xl md:tw-title-sm mb-10 text-camber font-bold text-white/75">
+                                        Os contratos inteligentes permitem a personalização das condições de empréstimo
+                                        com base no score de crédito e nas necessidades do mutuário.
                                     </p>
-                                    <p className="tw-lead text-xl font-bold md:tw-title-sm mb-10">
-                                        Esses perfis apresentam distintivos de NFT, representando as campanhas apoiadas,
-                                        os fundos doados e os resultados positivos alcançados. Ao exibir seus perfis de
-                                        NFT, os doadores podem inspirar outras pessoas, promovendo um senso de orgulho e
-                                        incentivando maior envolvimento na plataforma.
+                                    <p className="tw-lead text-xl font-bold md:tw-title-sm mb-10 text-white/50">
+                                        Isso aumenta a inclusão financeira, permitindo que mais pessoas tenham acesso ao
+                                        crédito.
                                     </p>
                                 </div>
                                 <div className="flex-1 order-1 md:order-2 mt-10 md:mt-0 aspect-[821/750]">
@@ -228,7 +214,7 @@ const Expandable = () => {
             </div>
 
             <div className="w-full mx-auto my-5 px-20 max-w-screen-2xl">
-                <div className="bg-dgold rounded-xl md:rounded-[32px] px-6 md:px-10 py-6 md:py-12">
+                <div className="bg-primary rounded-xl md:rounded-[32px] px-6 md:px-10 py-6 md:py-12">
                     <motion.button
                         onClick={() => handleDivClick('div4')}
                         className="w-full flex justify-between items-center bg-transparent appearance-none border-none p-0"
@@ -236,7 +222,7 @@ const Expandable = () => {
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.6, duration: 0.5 }}
                     >
-                        <h3 className="text-4xl font-bold mb-0">Sucesso Coletivo: Classificações de NFT</h3>
+                        <h3 className="text-4xl font-bold mb-0">Registro de Transações na Blockchain</h3>
                         <motion.svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="36"
@@ -259,24 +245,19 @@ const Expandable = () => {
 
                     {showContent.div4 && (
                         <motion.div
-                            className="transition-all overflow-hidden max-h-none"
+                            className="transition-all overflow-hidden"
                             initial={{ height: 0 }}
                             animate={{ height: 'auto' }}
-                            transition={{ duration: 0.3 }}
+                            transition={0.3}
                         >
                             <div className="flex flex-col md:flex-row">
                                 <div className="flex-1 pt-5 md:pt-20 order-2 md:order-1 flex flex-col justify-center">
-                                    <p className="tw-lead text-2xl md:tw-title-sm mb-10 text-camber font-bold">
-                                        O GOal Game apresenta classificações de NFT, que exibem os doadores mais ativos
-                                        e impactantes dentro da comunidade. Essas classificações classificam indivíduos
-                                        e organizações com base em suas contribuições acumulativas, promovendo uma
-                                        competição saudável e um senso de conquista coletiva..
+                                    <p className="tw-lead text-2xl md:tw-title-sm mb-10 text-camber font-bold text-white/75">
+                                        Todas as transações de crédito são registradas de forma imutável na blockchain,
+                                        criando um histórico confiável de crédito.
                                     </p>
-                                    <p className="tw-lead text-xl font-bold md:tw-title-sm mb-10">
-                                        Os doadores se esforçam para subir nas classificações, ganhar distintivos
-                                        especiais de NFT e obter reconhecimento por seus esforços filantrópicos. As
-                                        classificações de NFT não apenas criam um ambiente envolvente e interativo, mas
-                                        também incentivam maior participação e generosidade.
+                                    <p className="tw-lead text-xl font-bold md:tw-title-sm mb-10 text-white/50">
+                                        Isso pode melhorar ainda mais o score de crédito do indivíduo ao longo do tempo.
                                     </p>
                                 </div>
                                 <div className="flex-1 order-1 md:order-2 mt-10 md:mt-0 aspect-[821/750]">
