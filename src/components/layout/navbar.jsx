@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -82,7 +80,7 @@ const Navbar = () => {
                                 <Link href="/" className="hover:bg-cbase px-3 py-2 rounded-md ">
                                     Início
                                 </Link>
-                                <Link href="/games" className="hover:bg-cbase px-3 py-2 rounded-md ">
+                                <Link href="/form" className="hover:bg-cbase px-3 py-2 rounded-md ">
                                     Vincular Soulbound
                                 </Link>
                                 <Link href="/createm" className="hover:bg-cbase px-3 py-2 rounded-md ">
@@ -160,7 +158,7 @@ const Navbar = () => {
                             Início
                         </Link>
                         <Link
-                            href="/games"
+                            href="/form"
                             className="w-full text-gray-300 hover:bg-cbase hover:text-white block px-3 py-2 rounded-md text-base font-medium text-center"
                         >
                             Vincular Soulbound

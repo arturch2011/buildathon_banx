@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }) {
 
     return (
         <>
-            {loading && <LoadingShape color="#EDD290" />}
+            {loading && <LoadingShape color="#5294ff" />}
             <Layout>
                 <Component {...pageProps} />
             </Layout>
