@@ -1,5 +1,5 @@
 {
-  "name": "buildathon_banx",
+  "name": "banx",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,20 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.9.3",
-    "@truffle/hdwallet-provider": "^2.1.15",
-    "@web3auth/base": "^6.1.7",
-    "@web3auth/modal": "^6.1.8",
-    "autoprefixer": "10.4.15",
+    "@openzeppelin/contracts": "^4.9.2",
+    "@truffle/hdwallet-provider": "^2.1.12",
+    "@web3auth/ethereum-provider": "^6.1.4",
+    "@web3auth/modal": "^6.1.4",
+    "@web3auth/openlogin-adapter": "^6.1.4",
+    "autoprefixer": "10.4.14",
     "dotenv": "^16.3.1",
-    "eslint": "8.48.0",
-    "eslint-config-next": "13.4.19",
-    "framer-motion": "^10.16.4",
-    "next": "13.4.19",
-    "postcss": "8.4.29",
+    "eslint": "8.44.0",
+    "eslint-config-next": "13.4.8",
+    "framer-motion": "^10.12.18",
+    "next": "13.4.8",
+    "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tailwindcss": "3.3.3",
-    "web3": "^4.1.1"
+    "tailwindcss": "3.3.2",
+    "truffle": "^5.10.2",
+    "truffle-plugin-verify": "^0.5.32",
+    "web3": "^1.8.0"
   }
 }

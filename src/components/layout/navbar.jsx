@@ -83,7 +83,7 @@ const Navbar = () => {
                                 <Link href="/form" className="hover:bg-cbase px-3 py-2 rounded-md ">
                                     Vincular Soulbound
                                 </Link>
-                                <Link href="/createm" className="hover:bg-cbase px-3 py-2 rounded-md ">
+                                <Link href="/pools" className="hover:bg-cbase px-3 py-2 rounded-md ">
                                     Pools
                                 </Link>
 
@@ -103,9 +103,7 @@ const Navbar = () => {
                                         </div>
                                     )}
                                     </div>*/}
-                                <Link href="/benefits" className="hover:bg-cbase px-3 py-2 rounded-md">
-                                    Beneficios
-                                </Link>
+                                
                                 {/* <WalletButton /> */}
                                 <Auth />
                             </div>
@@ -164,10 +162,10 @@ const Navbar = () => {
                             Vincular Soulbound
                         </Link>
                         <Link
-                            href="/createm"
+                            href="/pools"
                             className="w-full text-gray-300 hover:bg-cbase hover:text-white block px-3 py-2 rounded-md text-base font-medium text-center"
                         >
-                            Criar
+                            Pools
                         </Link>
                         {/*<div
                             onClick={() => handleDropClick('drop3')}
@@ -202,12 +200,7 @@ const Navbar = () => {
                             )}
                         </div> */}
 
-                        <Link
-                            href="/benefits"
-                            className="w-full text-center text-gray-300 hover:bg-cbase hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                        >
-                            Benefícios
-                        </Link>
+                        
                         {/* <WalletButton /> */}
                         <Auth />
                     </div>
