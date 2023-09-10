@@ -180,12 +180,18 @@ const Auth = () => {
                 {/* <div className="bg-[url(../../public/profile.svg)] bg-contain bg-no-repeat bg-center h-10 w-14"></div> */}
                 <img src={picture} alt="profilePicture" className="h-10 w-auto rounded-xl md:rounded-full"></img>
                 {showDrop.drop1 && (
-                    <div className="md:absolute md:right-0 md:top-[140%] flex flex-col items-center rounded-xl p-4 bg-dbase ">
+                    <div className="md:absolute md:right-0 md:top-[140%] flex flex-col items-center rounded-xl shadow-lg p-4 bg-dbase ">
                         <Link
                             href={`/${address}`}
                             className="py-1 px-5 bg-cbrown w-full rounded-xl mb-2 text-center hover:bg-cbase"
                         >
                             Profile
+                        </Link>
+                        <Link
+                            href={"/form"}
+                            className="py-1 px-5 bg-cbrown w-full rounded-xl mb-2 text-center hover:bg-cbase"
+                        >
+                            Credit Score Data
                         </Link>
                         <button
                             onClick={logout}
