@@ -1,38 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Banxify
 
 ## Getting Started
 
-First, run the development server:
+First run to dowload dependences:
+```bash
+npm install
+
+truffle compile
+```
+
+Second, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+
 ```
+## Banxify: CreditScoreBoost - Your Gateway to Enhanced Financial Freedom
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Description:
+CreditScoreBoost is an innovative online platform designed to empower individuals seeking to improve their financial standing. Our platform enables users to seamlessly import their credit score data from their banking institutions and securely link it to a soul-bound token within their digital wallet. Leveraging the capabilities of the ICP (Internet Computer) and Ethereum networks, CreditScoreBoost revolutionizes the traditional credit scoring process, making it more accessible and efficient.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Key Features:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+1. **Seamless Data Import**: With CreditScoreBoost, importing your credit score data has never been easier. Connect your bank accounts, and we'll retrieve the necessary information swiftly and securely.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+2. **Soul-Bound Tokens**: We utilize blockchain technology to create soul-bound tokens that represent your creditworthiness. These tokens are unique to you, ensuring the utmost security and privacy.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. **ICP and Ethereum Integration**: By harnessing the power of the ICP and Ethereum networks, we provide a decentralized and scalable platform, making credit scoring accessible to a wider audience.
 
-## Learn More
+4. **Boost Your Credit Score**: CreditScoreBoost's unique approach to credit scoring allows you to enhance your credit profile over time, potentially opening doors to better financial opportunities.
 
-To learn more about Next.js, take a look at the following resources:
+5. **Easy Access to Credit**: With your enhanced credit score data readily available, applying for loans, credit cards, or other financial products becomes a straightforward process.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+6. **Security and Privacy**: We prioritize the security and privacy of your data, employing advanced encryption and blockchain technology to safeguard your sensitive information.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+7. **User-Friendly Interface**: Our user-friendly interface ensures a hassle-free experience, guiding you through each step of the process.
 
-## Deploy on Vercel
+CreditScoreBoost is committed to helping individuals take control of their financial future. By fusing the capabilities of blockchain technology, ICP, and Ethereum, we offer a transformative solution that streamlines the credit scoring process and facilitates access to credit. Join us today and embark on your journey to financial empowerment!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contract addresses:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Bitfinity = 0x496E4d5cD534273891895AC23984F76461C8ef45
+Sepolia = 0xa742af622297a4c748225FBF07cfE4EC542e0796
+
+
