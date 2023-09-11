@@ -73,7 +73,7 @@ const Navbar = () => {
                     <div className="w-full flex items-center justify-between">
                         <Link href="/" className="flex-shrink-0 flex items-center">
                             <Image src={logo} alt="logo" className="p-2 max-h-16 w-auto mr-2" />
-                            <h1>BANX</h1>
+                            <h1>BANXIFY</h1>
                         </Link>
                         <div className="hidden md:block">
                             <div className="ml-10 flex items-center space-x-4">

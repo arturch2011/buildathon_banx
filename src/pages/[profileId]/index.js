@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { data } from 'autoprefixer';
 
 const ProfileID = ({ data }) => {
-    const [activeTab, setActiveTab] = useState('settings');
+    const [activeTab, setActiveTab] = useState('infos');
     const [name, setName] = useState(null);
     const [verifierId, setId] = useState(null);
     const [profilePic, setProPic] = useState(null);
@@ -48,7 +48,11 @@ const ProfileID = ({ data }) => {
                             transition={{ delay: 0.2 }}
                         >
                             <div className="flex items-center mb-4">
-                                <img src={profilePic} alt="profilePicture" className="h-16 w-auto rounded-full mr-4"></img>
+                                <img
+                                    src={profilePic}
+                                    alt="profilePicture"
+                                    className="h-16 w-auto rounded-full mr-4"
+                                ></img>
                                 <div className="flex flex-col">
                                     <h2 className="text-xl font-bold whitespace-normal">{name}</h2>
                                     <p className="text-cbase truncate">{verifierId}</p>
@@ -70,11 +74,11 @@ const ProfileID = ({ data }) => {
                                 <ul className="flex space-x-4">
                                     <li
                                         className={`text-xl p-2 rounded-lg font-bold cursor-pointer ${
-                                            activeTab === 'settings' ? 'bg-primary' : 'text-white'
+                                            activeTab === 'infos' ? 'bg-primary' : 'text-white'
                                         }`}
-                                        onClick={() => handleTabClick('settings')}
+                                        onClick={() => handleTabClick('infos')}
                                     >
-                                        Configurações
+                                        Minhas Informações
                                     </li>
                                     <li
                                         className={`text-xl p-2 rounded-lg font-bold cursor-pointer ${
@@ -82,7 +86,7 @@ const ProfileID = ({ data }) => {
                                         }`}
                                         onClick={() => handleTabClick('projects')}
                                     >
-                                        Meus Projetos
+                                        Score de Crédito
                                     </li>
                                     <li
                                         className={`text-xl p-2 rounded-lg font-bold cursor-pointer ${
@@ -96,15 +100,76 @@ const ProfileID = ({ data }) => {
                             </motion.div>
 
                             {/* Conteúdo das Abas */}
-                            {activeTab === 'settings' && (
+                            {activeTab === 'infos' && (
                                 <motion.div
                                     className="bg-dbase rounded-lg p-6 shadow-md"
                                     initial={{ opacity: 0, y: 50 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 }}
                                 >
-                                    <h1>Settings</h1>
-                                    <h1>Content</h1>
+                                    {/* Informações Pessoais */}
+                                    <div className="border-b py-4">
+                                        <h2 className="text-xl font-semibold mb-2">Informações Pessoais</h2>
+                                        <div>
+                                            <label className="text-gray-600">Nome Completo:</label>
+                                            <p>nome</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-gray-600">Data de Nascimento:</label>
+                                            <p>nascimento</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-gray-600">Gênero:</label>
+                                            <p>genero</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-gray-600">Estado Civil:</label>
+                                            <p>estadoCivil</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-gray-600">Nacionalidade:</label>
+                                            <p>nacionalidade</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Informações de Endereço */}
+                                    <div className="border-b py-4">
+                                        <h2 className="text-xl font-semibold mb-2">Endereço</h2>
+                                        <div>
+                                            <label className="text-gray-600">Endereço:</label>
+                                            <p>endereço</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Informações Financeiras */}
+                                    <div className="border-b py-4">
+                                        <h2 className="text-xl font-semibold mb-2">Informações Financeiras</h2>
+                                        <div>
+                                            <label className="text-gray-600">CPF:</label>
+                                            <p>cpf</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-gray-600">Renda:</label>
+                                            <p>renda</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-gray-600">Patrimônio:</label>
+                                            <p>patrimonio</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="border-b py-4">
+                                        <h2 className="text-xl font-semibold mb-2">Informações do Token Soulbound</h2>
+                                        <div>
+                                            <label className="text-gray-600">Address</label>
+                                            <p>address</p>
+                                        </div>
+                                        <div>
+                                            <label className="text-gray-600">Sobre</label>
+                                            <p>Este token está vinculado com a sua carteira e é intransferível. Ele contém todas as informações acima</p>
+                                        </div>
+                                        
+                                    </div>
                                 </motion.div>
                             )}
                             {activeTab === 'projects' && (
@@ -114,7 +179,7 @@ const ProfileID = ({ data }) => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 }}
                                 >
-                                    <h1>Meus Projetos</h1>
+                                    <h1>Meus Score de Crédito</h1>
                                     <h1>
                                         {/*data.map((myDailyImprovements, index) => (
                                             <div key={index}>
@@ -143,7 +208,6 @@ const ProfileID = ({ data }) => {
                     </div>
                 </div>
             </section>
-            
         </>
     );
 };
