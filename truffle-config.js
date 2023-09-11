@@ -42,7 +42,7 @@
  */
 
 require('dotenv').config();
-const { MNEMONIC, NEXT_PUBLIC_PROJECT_ID } = process.env;
+const { MNEMONIC, NEXT_PUBLIC_PROJECT_ID, API_ETHSCAN } = process.env;
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
@@ -55,6 +55,13 @@ module.exports = {
      *
      * $ truffle test --network <network-name>
      */
+
+    plugins: ['truffle-plugin-verify'],
+
+    api_keys: {
+        etherscan: `${API_ETHSCAN}`,
+        // polygonscan: `${API_ETHSCAN}`,
+    },
 
     networks: {
         // Useful for testing. The `development` name is special - truffle uses it by default
@@ -92,7 +99,7 @@ module.exports = {
         },
 
         bitfinity: {
-            provider: () => new HDWalletProvider(MNEMONIC, `https://testnet.bitfinity.network/`, 3),
+            provider: () => new HDWalletProvider(MNEMONIC, `https://testnet.bitfinity.network`, 3),
             network_id: 355113,
             gas: 10000000,
             confirmations: 2,
@@ -108,6 +115,15 @@ module.exports = {
             confirmations: 2, // # of confirmations to wait between deployments. (default: 0)
             timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
             skipDryRun: true, // Skip dry run before migrations? (default: false for public nets )
+        },
+        sepolia: {
+            provider: () => new HDWalletProvider(MNEMONIC, `https://sepolia.infura.io/v3/${NEXT_PUBLIC_PROJECT_ID}`),
+            network_id: 11155111, // Sepolia's network ID
+            gas: 4000000, // Adjust the gas limit as per your requirements
+            gasPrice: 10000000000, // Set the gas price to an appropriate value
+            confirmations: 2, // Set the number of confirmations needed for a transaction
+            timeoutBlocks: 200, // Set the timeout for transactions
+            skipDryRun: true, // Skip the dry run option
         },
         //
         // Useful for private networks

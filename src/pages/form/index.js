@@ -74,8 +74,11 @@ const Create = () => {
     };
 
     const createCampaignHanddler = async () => {
-        const url = `https://polygon-mumbai.infura.io/v3/${PROJECT}`;
-        const provider = new HDWalletProvider(privateKey, url);
+        const urlMumbai = `https://polygon-mumbai.infura.io/v3/${PROJECT}`;
+        const urlSepolia = `https://sepolia.infura.io/v3/${PROJECT}`;
+        const urlBitfinity = `https://testnet.bitfinity.network`;
+
+        const provider = new HDWalletProvider(privateKey, urlSepolia);
         const web = await new Web3(provider);
         const data = await fetchData();
         console.log(data);
