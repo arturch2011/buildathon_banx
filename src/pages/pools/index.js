@@ -8,7 +8,7 @@ const containerVariants = {
 };
 
 const Pools = () => {
-    const poollist = require('./poollist');
+    const poollist = require('../../assets/poollist');
     return (
         <>
             <section className="bg-[url(../../public/teiasbg.png)] bg-cover bg-fixed bg-center py-28 flex flex-col items-center justify-center min-h-screen">
@@ -52,8 +52,6 @@ const Pools = () => {
                                 </button>
                             </div>
                         </div>
-
-                        
                     </div>
                     <div className="p-8">
                         {poollist.map((pool, index) => (
@@ -62,7 +60,6 @@ const Pools = () => {
                                     <h1 className='font-bold text-4xl mb-4"'>{pool.name}</h1>
                                 </div>
                             </div>
-                            
                         ))}
                     </div>
                 </motion.div>

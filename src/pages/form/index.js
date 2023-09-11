@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Web3 from 'web3';
-//import dailyImprovementsFactoryContract from '../../../Instances/DailyImprovementsFactory';
+import axios from 'axios';
+import SoulbondNFTContract from '../../../Instances/SoulbondNFT';
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
@@ -45,14 +46,49 @@ const Create = () => {
     const [profession, setProfession] = useState('');
     const [patrimony, setPatrimony] = useState('');
 
+    const fetchData = async () => {
+        const obj = {
+            nome: name,
+            endereco: paddress,
+            CPF: cpf,
+            nascimento: birth,
+            nacionalidade: nationality,
+            rend: renda,
+            genero: genre,
+            estadoCiv: civil,
+            proficao: profession,
+            patrimonio: patrimony,
+        };
+
+        const req = await fetch('/api/backend', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj),
+        });
+        const result = await req.json();
+
+        console.log(result.resultado.IpfsHash);
+        return result.resultado.IpfsHash;
+    };
+
     const createCampaignHanddler = async () => {
         const url = `https://polygon-mumbai.infura.io/v3/${PROJECT}`;
         const provider = new HDWalletProvider(privateKey, url);
         const web = await new Web3(provider);
-        //const dailyImprovementsFactory = await dailyImprovementsFactoryContract(web);
+        const data = await fetchData();
+        console.log(data);
+        const soulbondNFT = await SoulbondNFTContract(web);
+
+        const transact = await soulbondNFT.methods
+            .safeMint(`https://tomato-secure-lobster-753.mypinata.cloud/ipfs/${data}`)
+            .send({ from: accounts });
+        console.log(transact);
+
         //await dailyImprovementsFactory.methods
-           // .createDailyImprovements(name, paddress, cpf, birth, nationality, renda, genre, civil, profession, patrimony)
-            //.send({ from: accounts });
+        // .createDailyImprovements(name, paddress, cpf, birth, nationality, renda, genre, civil, profession, patrimony)
+        //.send({ from: accounts });
     };
 
     return (
@@ -64,13 +100,13 @@ const Create = () => {
                     whileInView="visible"
                     className="max-w-3xl mx-auto"
                 >
-                    <motion.h2
-                        variants={itemVariants}
-                        className="text-4xl md:text-6xl font-bold mb-8 text-center"
-                    >
+                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold mb-8 text-center">
                         Adicionar infos de CreditScore
                     </motion.h2>
-                    <motion.div variants={itemVariants} className="grid grid-lines-7 bg-dbase drop-shadow-lg rounded-2xl p-8 md:p-14 shadow-md">
+                    <motion.div
+                        variants={itemVariants}
+                        className="grid grid-lines-7 bg-dbase drop-shadow-lg rounded-2xl p-8 md:p-14 shadow-md"
+                    >
                         <div className="mb-6">
                             <label htmlFor="name" className="block text-xl font-medium mb-2">
                                 Nome Completo
@@ -95,7 +131,7 @@ const Create = () => {
                                 onChange={(e) => setPaddress(e.target.value)}
                             />
                         </div>
-                        <div className='grid grid-cols-2 gap-10'>
+                        <div className="grid grid-cols-2 gap-10">
                             <div className="mb-6">
                                 <label htmlFor="start" className="block text-xl font-medium mb-2">
                                     CPF
@@ -122,13 +158,12 @@ const Create = () => {
                             </div>
                         </div>
 
-                        <div className='grid grid-cols-2 gap-10'>
+                        <div className="grid grid-cols-2 gap-10">
                             <div className="mb-6">
                                 <label htmlFor="genero" className="block text-xl font-medium mb-2">
                                     Gênero
                                 </label>
                                 <select
-                                    
                                     id="genero"
                                     className="w-full bg-base border-cbase focus:outline-none focus:ring focus:border-primary border-solid border-2 rounded-xl p-3 placeholder:italic"
                                     onChange={(e) => setGenre(e.target.value)}
@@ -136,19 +171,14 @@ const Create = () => {
                                     <option value="">Escolha seu gênero</option>
                                     <option value="Solteiro">Masculino</option>
                                     <option value="Casado">Feminino</option>
-                                    <option value="Separado">
-                                        Outro
-                                    </option>
-                                    
+                                    <option value="Separado">Outro</option>
                                 </select>
-                                
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="category" className="block text-xl font-medium mb-2">
                                     Estado Civil
                                 </label>
                                 <select
-                                    
                                     id="category"
                                     className="w-full bg-base border-cbase focus:outline-none focus:ring focus:border-primary border-solid border-2 rounded-xl p-3 placeholder:italic"
                                     onChange={(e) => setCivil(e.target.value)}
@@ -156,26 +186,18 @@ const Create = () => {
                                     <option value="">Escolha seu estado Civil</option>
                                     <option value="Solteiro">Solteiro</option>
                                     <option value="Casado">Casado</option>
-                                    <option value="Separado">
-                                        Separado
-                                    </option>
-                                    <option value="Divorciado">
-                                        Divorciado
-                                    </option>
-                                    <option value="Viúvo">
-                                        Viúvo
-                                    </option>
+                                    <option value="Separado">Separado</option>
+                                    <option value="Divorciado">Divorciado</option>
+                                    <option value="Viúvo">Viúvo</option>
                                 </select>
-                                
                             </div>
                         </div>
-                        <div className='grid grid-cols-2 gap-10'>
+                        <div className="grid grid-cols-2 gap-10">
                             <div className="mb-6">
                                 <label htmlFor="nacionalidade" className="block text-xl font-medium mb-2">
                                     Nacionalidade
                                 </label>
                                 <select
-                                    
                                     id="nacionalidade"
                                     className="w-full bg-base border-cbase focus:outline-none focus:ring focus:border-primary border-solid border-2 rounded-xl p-3 placeholder:italic"
                                     onChange={(e) => setNationality(e.target.value)}
@@ -183,10 +205,7 @@ const Create = () => {
                                     <option value="">Escolha sua nacionalidade</option>
                                     <option value="Brasileiro">Brasileiro</option>
                                     <option value="Extrangeiro">Extrangeiro</option>
-                                    
-                                    
                                 </select>
-                                
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="renda" className="block text-xl font-medium mb-2">
@@ -199,10 +218,9 @@ const Create = () => {
                                     className="w-full bg-base border-cbase focus:outline-none focus:ring focus:border-primary border-solid border-2 rounded-xl p-3 placeholder:italic"
                                     onChange={(e) => setRenda(e.target.value)}
                                 />
-                                
                             </div>
                         </div>
-                        <div className='grid grid-cols-2 gap-10'>
+                        <div className="grid grid-cols-2 gap-10">
                             <div className="mb-6">
                                 <label htmlFor="profissao" className="block text-xl font-medium mb-2">
                                     Profissão
@@ -214,7 +232,6 @@ const Create = () => {
                                     className="w-full bg-base border-cbase focus:outline-none focus:ring focus:border-primary border-solid border-2 rounded-xl p-3 placeholder:italic"
                                     onChange={(e) => setProfession(e.target.value)}
                                 />
-                                
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="patrimonio" className="block text-xl font-medium mb-2">
@@ -227,14 +244,9 @@ const Create = () => {
                                     className="w-full bg-base border-cbase focus:outline-none focus:ring focus:border-primary border-solid border-2 rounded-xl p-3 placeholder:italic"
                                     onChange={(e) => setPatrimony(e.target.value)}
                                 />
-                                
                             </div>
                         </div>
 
-                    
-                        
-
-                        
                         <motion.button
                             type="submit"
                             className="bg-primary text-white mt-4 px-12 py-3 justify-self-center rounded-md font-bold text-lg shadow-lg"
