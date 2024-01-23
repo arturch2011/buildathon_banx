@@ -8,7 +8,7 @@ const pinata = new pinataSDK(NEXT_PUBLIC_PINATA_API_KEY, NEXT_PUBLIC_PINATA_SECR
 const api = async (req, res) => {
     const obj = {
         description: 'Soulbond NFT criated to facilitate credit',
-        image: 'https://tomato-secure-lobster-753.mypinata.cloud/ipfs/QmbRd5BmZGYrN3M9T8Cm3dzcU2Kyh4xhu3bsWsQvLxFRTN',
+        image: `https://tomato-secure-lobster-753.mypinata.cloud/ipfs/${req.body.img}`,
         name: `Banx-${req.body.nome}`,
         attributes: [
             {

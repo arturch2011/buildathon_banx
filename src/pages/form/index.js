@@ -15,6 +15,7 @@ const Create = () => {
         if (typeof window !== 'undefined') {
             const address = localStorage.getItem('address');
             setAccounts(address);
+            console.log(address);
             const privKey = localStorage.getItem('privateKey');
             setPrivateKey(privKey);
         }
@@ -45,8 +46,9 @@ const Create = () => {
     const [civil, setCivil] = useState('');
     const [profession, setProfession] = useState('');
     const [patrimony, setPatrimony] = useState('');
+    const [file, setFile] = useState(null);
 
-    const fetchData = async () => {
+    const fetchData = async (img) => {
         const obj = {
             nome: name,
             endereco: paddress,
@@ -58,6 +60,7 @@ const Create = () => {
             estadoCiv: civil,
             proficao: profession,
             patrimonio: patrimony,
+            img: img,
         };
 
         const req = await fetch('/api/backend', {
@@ -73,17 +76,26 @@ const Create = () => {
         return result.resultado.IpfsHash;
     };
 
+    const uploadToServer = async () => {
+        const formData = new FormData();
+        formData.append('file', file);
+        return axios.post('/api/image2', formData);
+    };
+
     const createCampaignHanddler = async () => {
         const urlMumbai = `https://polygon-mumbai.infura.io/v3/${PROJECT}`;
         const urlSepolia = `https://sepolia.infura.io/v3/${PROJECT}`;
         const urlBitfinity = `https://testnet.bitfinity.network`;
 
-        const provider = new HDWalletProvider(privateKey, urlSepolia);
+        const provider = new HDWalletProvider(privateKey, urlMumbai);
         const web = await new Web3(provider);
-        const data = await fetchData();
+        const img = await uploadToServer();
+        const data = await fetchData(img);
         console.log(data);
         const soulbondNFT = await SoulbondNFTContract(web);
 
+        console.log(accounts);
+        console.log(privateKey);
         const transact = await soulbondNFT.methods
             .safeMint(`https://tomato-secure-lobster-753.mypinata.cloud/ipfs/${data}`)
             .send({ from: accounts });

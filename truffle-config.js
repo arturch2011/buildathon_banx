@@ -99,14 +99,11 @@ module.exports = {
         },
 
         bitfinity: {
-            provider: () => new HDWalletProvider(MNEMONIC, `https://testnet.bitfinity.network`, 3),
-            network_id: 355113,
-            gas: 10000000,
-            confirmations: 2,
-            deploymentPollingInterval: 3000,
-            timeoutBlocks: 3000,
+            provider: () => new HDWalletProvider(MNEMONIC, `https://testnet.bitfinity.network`),
+            network_id: '355113',
+            deploymentPollingInterval: 8000,
+            timeoutBlocks: 500,
             disableConfirmationListener: true,
-            networkCheckTimeout: 50000000,
         },
 
         goerli: {
