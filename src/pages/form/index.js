@@ -79,7 +79,8 @@ const Create = () => {
     const uploadToServer = async () => {
         const formData = new FormData();
         formData.append('file', file);
-        return axios.post('/api/image2', formData);
+        const result = axios.post('/api/image2', formData);
+        return result.data.resultado.IpfsHash;
     };
 
     const createCampaignHanddler = async () => {
