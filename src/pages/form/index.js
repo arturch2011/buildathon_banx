@@ -80,7 +80,8 @@ const Create = () => {
     const uploadToServer = async () => {
         const formData = new FormData();
         formData.append('file', file);
-        const result = axios.post('/api/image2', formData);
+        const result = await axios.post('/api/image2', formData);
+        console.log(result);
         return result.data.resultado.IpfsHash;
     };
 
@@ -265,35 +266,35 @@ const Create = () => {
                         </div>
 
                         <div className="mb-6">
-                                <label htmlFor="image" className="block text-xl font-medium mb-2">
-                                    Upload Image
-                                </label>
+                            <label htmlFor="image" className="block text-xl font-medium mb-2">
+                                Upload Image
+                            </label>
 
-                                {selectedImage ? (
-                                    <div className="mt-4">
-                                        <img
-                                            src={selectedImage}
-                                            alt="Selected"
-                                            className="w-full aspect-[4/3] rounded-2xl object-cover"
-                                        ></img>
-                                    </div>
-                                ) : (
-                                    <input
-                                        onChange={(e) => {
-                                            const file = e.target.files[0];
-                                            setSelectedImage(URL.createObjectURL(file));
-                                            setFile(file);
-                                        }}
-                                        type="file"
-                                        className="w-full aspect-[4/3] 
+                            {selectedImage ? (
+                                <div className="mt-4">
+                                    <img
+                                        src={selectedImage}
+                                        alt="Selected"
+                                        className="w-full aspect-[4/3] rounded-2xl object-cover"
+                                    ></img>
+                                </div>
+                            ) : (
+                                <input
+                                    onChange={(e) => {
+                                        const fil = e.target.files[0];
+                                        setSelectedImage(URL.createObjectURL(fil));
+                                        setFile(fil);
+                                    }}
+                                    type="file"
+                                    className="w-full aspect-[4/3] 
                                         file:border-0
                                         file:text-lg file:font-semibold 
                                         file:bg-transparent file:text-cprimary
                                         hover:bg-base/75 bg-base border-cbase border-solid border-2 rounded-2xl p-5 "
-                                        id="image"
-                                    />
-                                )}
-                            </div>
+                                    id="image"
+                                />
+                            )}
+                        </div>
 
                         <motion.button
                             type="submit"
