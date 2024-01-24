@@ -47,6 +47,7 @@ const Create = () => {
     const [profession, setProfession] = useState('');
     const [patrimony, setPatrimony] = useState('');
     const [file, setFile] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const fetchData = async (img) => {
         const obj = {
@@ -262,6 +263,37 @@ const Create = () => {
                                 />
                             </div>
                         </div>
+
+                        <div className="mb-6">
+                                <label htmlFor="image" className="block text-xl font-medium mb-2">
+                                    Upload Image
+                                </label>
+
+                                {selectedImage ? (
+                                    <div className="mt-4">
+                                        <img
+                                            src={selectedImage}
+                                            alt="Selected"
+                                            className="w-full aspect-[4/3] rounded-2xl object-cover"
+                                        ></img>
+                                    </div>
+                                ) : (
+                                    <input
+                                        onChange={(e) => {
+                                            const file = e.target.files[0];
+                                            setSelectedImage(URL.createObjectURL(file));
+                                            setFile(file);
+                                        }}
+                                        type="file"
+                                        className="w-full aspect-[4/3] 
+                                        file:border-0
+                                        file:text-lg file:font-semibold 
+                                        file:bg-transparent file:text-cprimary
+                                        hover:bg-base/75 bg-base border-cbase border-solid border-2 rounded-2xl p-5 "
+                                        id="image"
+                                    />
+                                )}
+                            </div>
 
                         <motion.button
                             type="submit"
