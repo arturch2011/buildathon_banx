@@ -17,6 +17,7 @@ contract SoulbondNFT is ERC721, ERC721URIStorage, Ownable {
     constructor() ERC721('Banxify', 'BXF') {}
 
     function safeMint(string memory uri) public {
+        require(getUserNFTs(msg.sender).length < 1, 'You already have a soulbond NFT');
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(msg.sender, tokenId);
@@ -37,6 +38,17 @@ contract SoulbondNFT is ERC721, ERC721URIStorage, Ownable {
 
     function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721URIStorage) returns (bool) {
         return super.supportsInterface(interfaceId);
+    }
+
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId,
+        uint256 batchSize
+    ) internal virtual override {
+        // Custom logic here, e.g., checking special conditions
+        require(from == address(0), 'Err: token transfer is BLOCKED');
+        super._beforeTokenTransfer(from, to, tokenId, batchSize);
     }
 
     function getNFts() public view returns (uint[] memory) {

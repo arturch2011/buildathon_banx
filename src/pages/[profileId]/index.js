@@ -18,6 +18,7 @@ const ProfileID = ({ data }) => {
 
     const profile = data[1].attributes;
     const tokenId = data[2];
+    const image = data[1].image;
     const nome = profile[0].value;
     const endenreco = profile[1].value;
     const CPF = profile[2].value;
@@ -29,7 +30,7 @@ const ProfileID = ({ data }) => {
     const profession = profile[8].value;
     const patrimony = profile[9].value;
 
-    console.log(tokenId);
+    console.log(image);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
