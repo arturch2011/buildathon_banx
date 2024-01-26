@@ -1,6 +1,7 @@
 //import dailyImprovementsContract from '../../../Instances/DailyImprovements';
 //import dailyImprovementsFactoryContract from '../../../Instances/DailyImprovementsFactory';
 import web3 from '../../../Instances/web3';
+import SoulbondNFTContract from '../../../Instances/SoulbondNFT';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -15,7 +16,9 @@ const ProfileID = ({ data }) => {
     const [address, setAddr] = useState(null);
     const [balance, setBalance] = useState(null);
 
-    console.log(data);
+    const profile = data[1];
+
+    console.log(profile);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -166,9 +169,11 @@ const ProfileID = ({ data }) => {
                                         </div>
                                         <div>
                                             <label className="text-gray-600">Sobre</label>
-                                            <p>Este token está vinculado com a sua carteira e é intransferível. Ele contém todas as informações acima</p>
+                                            <p>
+                                                Este token está vinculado com a sua carteira e é intransferível. Ele
+                                                contém todas as informações acima
+                                            </p>
                                         </div>
-                                        
                                     </div>
                                 </motion.div>
                             )}
@@ -247,5 +252,25 @@ const ProfileID = ({ data }) => {
 //
 //    return { props: { data: data } };
 //};
+
+export const getServerSideProps = async ({ query }) => {
+    const addr = query.profileId;
+    const instance = await SoulbondNFTContract(web3);
+    const nftId = await instance.methods.getUserNFTs(addr).call();
+    const tokenUri = await instance.methods.tokenURI(nftId[0]).call();
+    console.log('Aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+    // console.log(typeof addr);
+    console.log(nftId);
+    console.log(tokenUri);
+    console.log(addr);
+
+    const response = await fetch(tokenUri);
+    const objectData = await response.json();
+
+    console.log('Object Data: ', objectData);
+    console.log(objectData);
+
+    return { props: { data: [addr, objectData] } };
+};
 
 export default ProfileID;
