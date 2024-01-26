@@ -16,9 +16,20 @@ const ProfileID = ({ data }) => {
     const [address, setAddr] = useState(null);
     const [balance, setBalance] = useState(null);
 
-    const profile = data[1];
+    const profile = data[1].attributes;
+    const tokenId = data[2];
+    const nome = profile[0].value;
+    const endenreco = profile[1].value;
+    const CPF = profile[2].value;
+    const birth = profile[3].value;
+    const nationality = profile[4].value;
+    const income = profile[5].value;
+    const gender = profile[6].value;
+    const civilState = profile[7].value;
+    const profession = profile[8].value;
+    const patrimony = profile[9].value;
 
-    console.log(profile);
+    console.log(tokenId);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -115,23 +126,23 @@ const ProfileID = ({ data }) => {
                                         <h2 className="text-xl font-semibold mb-2">Informações Pessoais</h2>
                                         <div>
                                             <label className="text-gray-600">Nome Completo:</label>
-                                            <p>nome</p>
+                                            <p>{nome}</p>
                                         </div>
                                         <div>
                                             <label className="text-gray-600">Data de Nascimento:</label>
-                                            <p>nascimento</p>
+                                            <p>{birth}</p>
                                         </div>
                                         <div>
                                             <label className="text-gray-600">Gênero:</label>
-                                            <p>genero</p>
+                                            <p>{gender}</p>
                                         </div>
                                         <div>
                                             <label className="text-gray-600">Estado Civil:</label>
-                                            <p>estadoCivil</p>
+                                            <p>{civilState}</p>
                                         </div>
                                         <div>
                                             <label className="text-gray-600">Nacionalidade:</label>
-                                            <p>nacionalidade</p>
+                                            <p>{nationality}</p>
                                         </div>
                                     </div>
 
@@ -140,7 +151,7 @@ const ProfileID = ({ data }) => {
                                         <h2 className="text-xl font-semibold mb-2">Endereço</h2>
                                         <div>
                                             <label className="text-gray-600">Endereço:</label>
-                                            <p>endereço</p>
+                                            <p>{endenreco}</p>
                                         </div>
                                     </div>
 
@@ -149,23 +160,23 @@ const ProfileID = ({ data }) => {
                                         <h2 className="text-xl font-semibold mb-2">Informações Financeiras</h2>
                                         <div>
                                             <label className="text-gray-600">CPF:</label>
-                                            <p>cpf</p>
+                                            <p>{CPF}</p>
                                         </div>
                                         <div>
                                             <label className="text-gray-600">Renda:</label>
-                                            <p>renda</p>
+                                            <p>{income}</p>
                                         </div>
                                         <div>
                                             <label className="text-gray-600">Patrimônio:</label>
-                                            <p>patrimonio</p>
+                                            <p>{patrimony}</p>
                                         </div>
                                     </div>
 
                                     <div className="border-b py-4">
                                         <h2 className="text-xl font-semibold mb-2">Informações do Token Soulbound</h2>
                                         <div>
-                                            <label className="text-gray-600">Address</label>
-                                            <p>address</p>
+                                            <label className="text-gray-600">SoulBound ID</label>
+                                            <p>{tokenId}</p>
                                         </div>
                                         <div>
                                             <label className="text-gray-600">Sobre</label>
@@ -270,7 +281,7 @@ export const getServerSideProps = async ({ query }) => {
     console.log('Object Data: ', objectData);
     console.log(objectData);
 
-    return { props: { data: [addr, objectData] } };
+    return { props: { data: [addr, objectData, nftId[0]] } };
 };
 
 export default ProfileID;
