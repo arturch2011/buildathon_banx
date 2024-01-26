@@ -144,6 +144,10 @@ const ProfileID = ({ data }) => {
                                             <label className="text-gray-600">Nacionalidade:</label>
                                             <p>{nationality}</p>
                                         </div>
+                                        <div>
+                                            <label className="text-gray-600">Profissão:</label>
+                                            <p>{profession}</p>
+                                        </div>
                                     </div>
 
                                     {/* Informações de Endereço */}
