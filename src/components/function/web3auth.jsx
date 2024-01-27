@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Web3Auth } from '@web3auth/modal';
@@ -6,24 +6,26 @@ import { CHAIN_NAMESPACES } from '@web3auth/base';
 import RPC from './web3RPC';
 import Image from 'next/image';
 
-const Auth = () => {
+const Auth = ({ myPropFunction }) => {
     const PROJECT = process.env.NEXT_PUBLIC_PROJECT_ID;
     const [address, setAddress] = useState(null);
     const [web3auth, setWeb3auth] = useState(null);
     const [provider, setProvider] = useState(null);
     const [privateKey, setPrivateKey] = useState(null);
     const [picture, setPicture] = useState(null);
+    const [loged, setLoged] = useState(false);
 
     const clientId = 'BF1CU7YcdEicaowe0Kuzu5nESkmao_GyXpUEUjnu4OPWSmZDodKaLWqrJZ4zIWZjWCLab2Vc0KGbSbcAJ7j9vEs';
     const target = `https://polygon-mumbai.infura.io/v3/${PROJECT}`;
 
     useEffect(() => {
-        if (localStorage.getItem('address')) {
-            setAddress(localStorage.getItem('address'));
-            setPicture(localStorage.getItem('profilePic'));
-        }
         const init = async () => {
             try {
+                if (localStorage.getItem('loged')) {
+                    setAddress(localStorage.getItem('address'));
+                    setPicture(localStorage.getItem('profilePic'));
+                    setLoged(true);
+                }
                 const chainConfig = {
                     chainNamespace: CHAIN_NAMESPACES.EIP155,
                     chainId: '0x13881',
@@ -35,12 +37,12 @@ const Auth = () => {
                     web3AuthNetwork: 'testnet', // mainnet, aqua,  cyan or testnet
                     chainConfig,
                     uiConfig: {
-                        appName: 'Goals', // <-- Your dApp Name
+                        appName: 'EventChain', // <-- Your dApp Name
                         //appLogo: 'https://web3auth.io/images/w3a-L-Favicon-1.svg', // Your dApp Logo URL
                         theme: 'dark', // "light" | "dark" | "auto"
                         primary: '#000000', // Primary color used for buttons, links, etc.
                         loginMethodsOrder: ['google', 'facebook', 'twitter', 'apple'],
-                        defaultLanguage: 'pt', // en, de, ja, ko, zh, es, fr, pt, nl
+                        defaultLanguage: 'en', // en, de, ja, ko, zh, es, fr, pt, nl
                         loginGridCol: 3, // 2 | 3
                         primaryButton: 'externalLogin', // "externalLogin" | "socialLogin" | "emailLogin"
                     },
@@ -80,6 +82,8 @@ const Auth = () => {
         const addr = await rpc.getAccounts();
         localStorage.setItem('address', addr);
         setAddress(addr);
+        localStorage.setItem('loged', true);
+        setLoged(true);
         console.log(addr);
     };
 
@@ -104,19 +108,22 @@ const Auth = () => {
         localStorage.setItem('privateKey', privKey);
         console.log(privKey);
         setPrivateKey(privKey);
+        localStorage.setItem('provider', provider);
         return privKey;
     };
 
     const logout = async () => {
+        setProvider(null);
+        localStorage.removeItem('address');
+        setAddress(null);
+        localStorage.removeItem('loged');
+        setLoged(false);
         if (!web3auth) {
             console.log('web3auth not initialized yet');
             return;
         }
+
         await web3auth.logout();
-        setProvider(null);
-        localStorage.removeItem('address');
-        setAddress(null);
-        localStorage.removeItem('profilePic');
     };
 
     const connectWalletHandler = async () => {
@@ -126,15 +133,15 @@ const Auth = () => {
         }
         const web3authProvider = await web3auth.connect();
         setProvider(web3authProvider);
+
         await getUserInfo();
         await getAccounts();
         await getBalance();
 
-        // setTimeout(function () {
-        //     loged();
-        // }, 1000);
-
         await getPrivateKey();
+
+        // const rec = await sendTransaction();
+        // console.log(rec);
     };
 
     // const loged = async () => {
@@ -144,58 +151,68 @@ const Auth = () => {
     //     }
     // };
 
-    const [showDrop, setShowDrop] = useState({
-        drop1: false,
-        drop2: false,
-        drop3: false,
-        drop4: false,
-    });
+    const [showDrop, setShowDrop] = useState(false);
+    const buttonRef = useRef(null);
 
-    const handleDropClick = (drop) => {
-        // Verificar o estado atual da div clicada
-        const isCurrentlyOpen = showDrop[drop];
-
-        // Fechar todas as divs
-        const updatedShowDrop = {
-            drop1: false,
-        };
-
-        // Abrir a div clicada, se ela estiver fechada
-        if (!isCurrentlyOpen) {
-            updatedShowDrop[drop] = true;
+    // Função para fechar o menu dropdown quando ocorrer um clique fora dele
+    const handleClickOutside = (event) => {
+        if (buttonRef.current && !buttonRef.current.contains(event.target)) {
+            setShowDrop(false);
         }
-
-        // Atualizar o estado
-        setShowDrop(updatedShowDrop);
     };
 
-    if (address) {
+    // Adiciona um ouvinte de eventos de clique ao corpo do documento
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    if (loged) {
         return (
             <motion.button
-                onClick={() => handleDropClick('drop1')}
+                onClick={() => setShowDrop(!showDrop)}
+                ref={buttonRef}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="py-1 px-1 relative  rounded-xl md:rounded-full bg-primary flex flex-col "
+                className="py-1 px-1 relative  rounded-xl md:rounded-2xl bg-primary flex flex-col "
             >
                 {/* <div className="bg-[url(../../public/profile.svg)] bg-contain bg-no-repeat bg-center h-10 w-14"></div> */}
-                <img src={picture} alt="profilePicture" className="h-10 w-auto rounded-xl md:rounded-full"></img>
-                {showDrop.drop1 && (
-                    <div className="md:absolute md:right-0 md:top-[140%] flex flex-col items-center rounded-xl shadow-lg p-4 bg-dbase ">
+                <div className="flex items-center self-center">
+                    <img src={picture} alt="profilePicture" className="h-10 w-auto rounded-2xl"></img>
+                    <motion.svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 36 37"
+                        fill="none"
+                        className="transition-transform w-6 md:w-9"
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: showDrop ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <path
+                            d="M5.67578 12.5884L17.999 24.9116L30.3223 12.5884"
+                            stroke="white"
+                            strokeOpacity="0.6"
+                            strokeWidth="3"
+                        ></path>
+                    </motion.svg>
+                </div>
+
+                {showDrop && (
+                    <div className="md:absolute md:right-0 md:top-[140%] mt-2 md:mt-0 flex flex-col items-center rounded-2xl p-4 bg-dbase">
                         <Link
+                            onClick={myPropFunction}
                             href={`/${address}`}
-                            className="py-1 px-5 bg-cbrown w-full rounded-xl mb-2 text-center hover:bg-cbase"
+                            className="py-1 px-5 bg-cbrown w-full rounded-2xl mb-2 text-center hover:bg-cbase"
                         >
                             Profile
                         </Link>
-                        <Link
-                            href={"/form"}
-                            className="py-1 px-5 bg-cbrown w-full rounded-xl mb-2 text-center hover:bg-cbase"
-                        >
-                            Credit Score Data
-                        </Link>
                         <button
                             onClick={logout}
-                            className="p-1 px-5 bg-cbrown w-full rounded-xl text-center hover:bg-cbase"
+                            className="p-1 px-5 bg-cbrown w-full rounded-2xl text-center hover:bg-cbase"
                         >
                             Logout
                         </button>
@@ -203,21 +220,21 @@ const Auth = () => {
                 )}
             </motion.button>
         );
+    } else {
+        return (
+            <div>
+                <motion.button
+                    onClick={connectWalletHandler}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    id="walletButtonn"
+                    className="bg-primary hover:bg-cprimary font-bold py-2 px-4 rounded-2xl"
+                >
+                    Connect
+                </motion.button>
+            </div>
+        );
     }
-
-    return (
-        <div>
-            <motion.button
-                onClick={connectWalletHandler}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                id="walletButtonn"
-                className="bg-primary hover:bg-dprimary font-bold py-2 px-4 rounded-lg"
-            >
-                Conectar
-            </motion.button>
-        </div>
-    );
 };
 
 export default Auth;

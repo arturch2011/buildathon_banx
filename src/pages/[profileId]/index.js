@@ -42,10 +42,14 @@ const ProfileID = ({ data }) => {
             setProPic(profilePic);
             const address = localStorage.getItem('address');
             setAddr(address);
-            const balance = localStorage.getItem('balance');
-            setBalance(balance);
+            getBal(address);
         }
     }, []);
+    const getBal = async (addr) => {
+        const bal = await web3.eth.getBalance(addr);
+        const bal2 = web3.utils.fromWei(bal, 'ether');
+        setBalance(bal2);
+    }
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -57,7 +61,7 @@ const ProfileID = ({ data }) => {
                     <div className="grid grid-cols-12 gap-4">
                         {/* Parte Fixa do Perfil em Destaque */}
                         <motion.div
-                            className="col-span-4  bg-dbase rounded-lg p-6 shadow-md"
+                            className="col-span-12 md:col-span-4 h-52 bg-dbase rounded-2xl p-6 shadow-lg"
                             initial={{ opacity: 0, x: -50 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
@@ -74,12 +78,12 @@ const ProfileID = ({ data }) => {
                                 </div>
                             </div>
                             <p className=" mb-2 truncate">Address: {address}</p>
-                            <p className=" mb-2">MATIC: {balance}</p>
+                            <p className=" mb-2">BFT: {parseFloat(balance).toFixed(2)}</p>
                             {/* Outras informações do perfil aqui */}
                         </motion.div>
 
                         {/* Seção das Abas e Conteúdo */}
-                        <div className="col-span-8">
+                        <div className="col-span-12 md:col-span-8">
                             <motion.div
                                 className="bg-dbase  rounded-lg p-6 shadow-md mb-4"
                                 initial={{ opacity: 0, x: 50 }}
@@ -232,8 +236,31 @@ const ProfileID = ({ data }) => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 }}
                                 >
-                                    <h1>Carteira</h1>
-                                    <h1>Content</h1>
+                                    <div className="border-b py-4">
+                                        <h2 className="text-xl font-semibold mb-2">My Wallet</h2>
+                                        <div className="mb-2">
+                                            <label className="text-gray-600">Public Address:</label>
+                                            <p className="truncate">{address}</p>
+                                        </div>
+                                        <div className="mb-2">
+                                            <label className="text-gray-600">BFT Balance:</label>
+                                            <p>{parseFloat(balance).toFixed(2)} BFT</p>
+                                        </div>
+                                    
+                                        <div className="mb-2">
+                                            <label className="text-gray-600">Transaction History:</label>
+                                            <div>
+                                                <Link
+                                                    className="underline text-primary hover:text-cprimary active:text-primary"
+                                                    href={`https://explorer.bitfinity.network/address/${address}`}
+                                                >
+                                                    bitfinity-block-explorer
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
                                 </motion.div>
                             )}
                         </div>

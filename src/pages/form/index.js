@@ -48,6 +48,8 @@ const Create = () => {
     const [patrimony, setPatrimony] = useState('');
     const [file, setFile] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
+    const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchData = async (img) => {
         const obj = {
@@ -86,27 +88,39 @@ const Create = () => {
     };
 
     const createCampaignHanddler = async () => {
-        const urlMumbai = `https://polygon-mumbai.infura.io/v3/${PROJECT}`;
-        const urlSepolia = `https://sepolia.infura.io/v3/${PROJECT}`;
-        const urlBitfinity = `https://testnet.bitfinity.network`;
+        setIsLoading(true);
 
-        const provider = new HDWalletProvider(privateKey, urlBitfinity);
-        const web = await new Web3(provider);
-        const img = await uploadToServer();
-        const data = await fetchData(img);
-        console.log(data);
-        const soulbondNFT = await SoulbondNFTContract(web);
+        try{
+            const urlMumbai = `https://polygon-mumbai.infura.io/v3/${PROJECT}`;
+            const urlSepolia = `https://sepolia.infura.io/v3/${PROJECT}`;
+            const urlBitfinity = `https://testnet.bitfinity.network`;
 
-        console.log(accounts);
-        console.log(privateKey);
-        const transact = await soulbondNFT.methods
-            .safeMint(`https://tomato-secure-lobster-753.mypinata.cloud/ipfs/${data}`)
-            .send({ from: accounts, nonce: 0 });
-        console.log(transact);
+            const provider = new HDWalletProvider(privateKey, urlBitfinity);
+            const web = await new Web3(provider);
+            const img = await uploadToServer();
+            const data = await fetchData(img);
+            console.log(data);
+            const soulbondNFT = await SoulbondNFTContract(web);
 
-        //await dailyImprovementsFactory.methods
-        // .createDailyImprovements(name, paddress, cpf, birth, nationality, renda, genre, civil, profession, patrimony)
-        //.send({ from: accounts });
+            console.log(accounts);
+            console.log(privateKey);
+            const transact = await soulbondNFT.methods
+                .safeMint(`https://tomato-secure-lobster-753.mypinata.cloud/ipfs/${data}`)
+                .send({ from: accounts, nonce: 0 });
+            console.log(transact);
+
+            //await dailyImprovementsFactory.methods
+            // .createDailyImprovements(name, paddress, cpf, birth, nationality, renda, genre, civil, profession, patrimony)
+            //.send({ from: accounts });
+            setIsLoading(false);
+            setShowConfirmationPopup(false);
+        } catch (error) {
+            alert(error);
+            setIsLoading(false);
+            setShowConfirmationPopup(false);
+        }
+
+        
     };
 
     return (
@@ -301,11 +315,40 @@ const Create = () => {
                             className="bg-primary text-white mt-4 px-12 py-3 justify-self-center rounded-md font-bold text-lg shadow-lg"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={createCampaignHanddler}
+                            onClick={() => setShowConfirmationPopup(true)}
                         >
                             Enviar Meus Dados
                         </motion.button>
                     </motion.div>
+                    {showConfirmationPopup && (
+                            <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-xl">
+                                <div className="bg-base p-6 rounded-2xl shadow-md">
+                                    <p className="text-lg font-semibold mb-4">Do you want to create your soulbound token?</p>
+                                    <div className="flex justify-center space-x-4">
+                                        <button
+                                            onClick={createCampaignHanddler}
+                                            className="px-4 py-2 bg-cprimary text-white rounded-2xl hover:bg-primary active:bg-cprimary focus:outline-none"
+                                        >
+                                            Confirm
+                                        </button>
+                                        <button
+                                            onClick={() => setShowConfirmationPopup(false)}
+                                            className="px-4 py-2 text-white rounded-2xl hover:bg-dbase focus:outline-none"
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        {isLoading && (
+                            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                                <div className="bg-base p-6 rounded-lg shadow-md flex items-center justify-center space-x-4">
+                                    <div className="animate-spin w-10 h-10 border-t-4 border-b-4 border-cprimary rounded-full"></div>
+                                    <p className="text-lg font-semibold">Waiting for blockchain response...</p>
+                                </div>
+                            </div>
+                        )}
                 </motion.div>
             </div>
         </section>
