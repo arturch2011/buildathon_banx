@@ -67,7 +67,8 @@ const api = async (req, res) => {
         ],
     };
     const json = JSON.stringify(obj);
-    const caminhoArquivo = path.resolve(__dirname, '../../../public/meta.json');
+    const caminhoArquivo = path.resolve(__dirname, './meta.json');
+    console.log(caminhoArquivo)
     fs.writeFileSync(caminhoArquivo, json, 'utf-8');
 
     const options = {
