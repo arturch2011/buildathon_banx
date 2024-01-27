@@ -66,7 +66,7 @@ const api = async (req, res) => {
         ],
     };
     const json = JSON.stringify(obj);
-    const caminhoArquivo = './public/meta.json';
+    const caminhoArquivo = '../../../public/meta.json';
     fs.writeFileSync(caminhoArquivo, json, 'utf-8');
 
     const options = {
