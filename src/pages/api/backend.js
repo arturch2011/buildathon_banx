@@ -1,3 +1,5 @@
+const tmp = require('tmp-promise');
+const fsp = require('fs').promises;
 const fs = require('fs');
 const path = require('path');
 
@@ -67,9 +69,10 @@ const api = async (req, res) => {
         ],
     };
     const json = JSON.stringify(obj);
-    const caminhoArquivo = path.resolve(__dirname, './meta.json');
+    const { path: caminhoArquivo } = await tmp.file();
+    // const caminhoArquivo = path.resolve(__dirname, './meta.json');
     console.log(caminhoArquivo)
-    fs.writeFileSync(caminhoArquivo, json, 'utf-8');
+    await fsp.writeFile(caminhoArquivo, json, 'utf-8');
 
     const options = {
         pinataMetadata: {
