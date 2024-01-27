@@ -342,3 +342,5 @@ export const getServerSideProps = async ({ query }) => {
 
     return { props: { data: [addr, objectData, nftId] } };
 };
+
+export default ProfileID;
