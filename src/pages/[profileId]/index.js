@@ -271,22 +271,74 @@ const ProfileID = ({ data }) => {
 
 export const getServerSideProps = async ({ query }) => {
     const addr = query.profileId;
-    const instance = await SoulbondNFTContract(web3);
-    const nftId = await instance.methods.getUserNFTs(addr).call();
-    const tokenUri = await instance.methods.tokenURI(nftId[0]).call();
-    console.log('Aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
-    // console.log(typeof addr);
-    console.log(nftId);
-    console.log(tokenUri);
     console.log(addr);
+    const instance = await SoulbondNFTContract(web3);
+    let nftId = await instance.methods.getUserNFTs(addr).call();
+    let tokenUri = '';
+    let objectData = {
+        image: '',
+        attributes: [
+            {
+                trait_type: 'Nome',
+                value: 'undefined',
+            },
+            {
+                trait_type: 'Endereço',
+                value: 'undefined',
+            },
+            {
+                trait_type: 'CPF',
+                value: 'undefined',
+            },
+            {
+                trait_type: 'Data de Nascimento',
+                value: 'undefined',
+            },
+            {
+                trait_type: 'Nacionalidade',
+                value: 'undefined',
+            },
+            {
+                trait_type: 'Renda',
+                value: 'undefined',
+            },
+            {
+                trait_type: 'Gênero',
+                value: 'undefined',
+            },
+            {
+                trait_type: 'Estado Civil',
+                value: 'undefined',
+            },
+            {
+                trait_type: 'Profissão',
+                value: 'undefined',
+            },
+            {
+                trait_type: 'Patrimônio',
+                value: 'undefined',
+            },
+        ],
+    };
+    console.log('Aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+    console.log('nftId: ', nftId);
+    if (nftId.length === 0) {
+        nftId = null;
+    } else {
+        nftId = nftId[0];
+        tokenUri = await instance.methods.tokenURI(nftId).call();
+        console.log('Aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+        // console.log(typeof addr);
+        console.log(nftId);
+        console.log(tokenUri);
+        console.log(addr);
 
-    const response = await fetch(tokenUri);
-    const objectData = await response.json();
+        const response = await fetch(tokenUri);
+        objectData = await response.json();
 
-    console.log('Object Data: ', objectData);
-    console.log(objectData);
+        console.log('Object Data: ', objectData);
+        console.log(objectData);
+    }
 
-    return { props: { data: [addr, objectData, nftId[0]] } };
+    return { props: { data: [addr, objectData, nftId] } };
 };
-
-export default ProfileID;
