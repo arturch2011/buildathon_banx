@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const { NEXT_PUBLIC_PINATA_API_KEY, NEXT_PUBLIC_PINATA_SECRET_API_KEY } = process.env;
 
@@ -66,7 +67,7 @@ const api = async (req, res) => {
         ],
     };
     const json = JSON.stringify(obj);
-    const caminhoArquivo = '../../../public/meta.json';
+    const caminhoArquivo = path.resolve(__dirname, '../../../public/meta.json');
     fs.writeFileSync(caminhoArquivo, json, 'utf-8');
 
     const options = {
