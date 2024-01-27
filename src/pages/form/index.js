@@ -90,7 +90,7 @@ const Create = () => {
         const urlSepolia = `https://sepolia.infura.io/v3/${PROJECT}`;
         const urlBitfinity = `https://testnet.bitfinity.network`;
 
-        const provider = new HDWalletProvider(privateKey, urlMumbai);
+        const provider = new HDWalletProvider(privateKey, urlBitfinity);
         const web = await new Web3(provider);
         const img = await uploadToServer();
         const data = await fetchData(img);
@@ -101,7 +101,7 @@ const Create = () => {
         console.log(privateKey);
         const transact = await soulbondNFT.methods
             .safeMint(`https://tomato-secure-lobster-753.mypinata.cloud/ipfs/${data}`)
-            .send({ from: accounts });
+            .send({ from: accounts, nonce: 0 });
         console.log(transact);
 
         //await dailyImprovementsFactory.methods

@@ -191,6 +191,17 @@ const ProfileID = ({ data }) => {
                                             </p>
                                         </div>
                                     </div>
+                                    <div className="border-b py-4">
+                                        <h2 className="text-xl font-semibold mb-2">Documento de Identidade</h2>
+                                        <div>
+                                            <label className="text-gray-600">Documento</label>
+                                            <img
+                                                src={image}
+                                                alt="Imagem"
+                                                className="my-4 rounded-2xl w-full aspect-[2/1.5] object-cover"
+                                            ></img>
+                                        </div>
+                                    </div>
                                 </motion.div>
                             )}
                             {activeTab === 'projects' && (
